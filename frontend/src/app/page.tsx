@@ -195,8 +195,8 @@ export default function Page() {
                   </p>
                   <div className="logo-reveal logo-motion w-full flex justify-center px-4 transition-transform duration-300 hover:scale-105">
                     <Image
-                      src="/Profero Logo.png"
-                      alt="Profero logo"
+                      src="/rfp_logo.png"
+                      alt="RFP Logo"
                       width={220}
                       height={220}
                       sizes="(max-width: 640px) 40vw, (max-width: 768px) 32vw, 220px"
