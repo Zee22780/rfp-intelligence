@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dot-grid {
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.sphere-gradient {
+  background: radial-gradient(circle at 30% 30%, #4ade80, #22c55e 50%, #15803d);
+  box-shadow:
+    0 10px 40px -10px rgba(34, 197, 94, 0.6),
+    inset -5px -5px 20px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes logoGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.16))
+      drop-shadow(0 0 12px rgba(132, 204, 22, 0.08));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.42))
+      drop-shadow(0 0 26px rgba(132, 204, 22, 0.24));
+  }
+}
+
+.logo-reveal {
+  animation: logoFadeIn 700ms ease-out forwards;
+}
+
+.logo-motion {
+  animation:
+    logoFloat 4s ease-in-out 700ms infinite,
+    logoGlow 3s ease-in-out 700ms infinite;
+  will-change: transform, filter;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-reveal,
+  .logo-motion {
+    animation: none;
+  }
+}

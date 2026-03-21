@@ -1,0 +1,11 @@
+pdfplumber==0.5.28
+pdfminer.six==20200517
+python-dotenv
+openai
+PyMuPDF
+tiktoken
+uvicorn
+fastapi
+supabase
+python-multipart
+httpx
