@@ -3,7 +3,7 @@
 A RAG-powered chat interface for querying your organisation's RFP documents, case studies, and pitch decks. Upload PDFs, ask questions in plain English, and get cited, synthesised answers grounded in your actual documents.
 
 <div align="center">
-  <video src="public/rfp-loop-final.mp4" width="100%" autoplay loop muted playsinline></video>
+  <video src="frontend/public/rfp-loop-final.mp4" width="100%" autoplay loop muted playsinline></video>
   <p><i>RFP Intelligence RAG flow, featuring pgvector retrieval and confidence scoring.</i></p>
 </div>
 
