@@ -2,6 +2,11 @@
 
 A RAG-powered chat interface for querying your organisation's RFP documents, case studies, and pitch decks. Upload PDFs, ask questions in plain English, and get cited, synthesised answers grounded in your actual documents.
 
+<div align="center">
+  <video src="public/rfp-loop-final.mp4" width="100%" autoplay loop muted playsinline></video>
+  <p><i>RFP Intelligence RAG flow, featuring pgvector retrieval and confidence scoring.</i></p>
+</div>
+
 ## How it works
 
 ```
@@ -11,12 +16,14 @@ Query → HyDE expansion → decompose → multi-query retrieval → rerank → 
 ```
 
 **Processing pipeline**
+
 - Text is extracted with `pdfplumber`; sparse pages (< 100 chars) fall back to GPT-4o Vision
 - Repeated lines across 3+ pages (headers, footers, page numbers) are stripped
 - Section headings are detected and prepended to the embedding text
 - 150-token child chunks are embedded for retrieval; each carries a 500-token parent window used for synthesis
 
 **Search pipeline**
+
 1. **HyDE** — generates a hypothetical answer to the query, embeds that instead of the raw question for better semantic alignment
 2. **Multi-query** — decomposes compound queries into up to 4 sub-questions and retrieves for each, then deduplicates
 3. **Hybrid search** — combines vector similarity and full-text search via Supabase RPC with Reciprocal Rank Fusion
@@ -24,15 +31,15 @@ Query → HyDE expansion → decompose → multi-query retrieval → rerank → 
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Frontend | Next.js 15, React, Tailwind CSS |
-| Backend | FastAPI (Python) |
-| Database + vectors | Supabase (PostgreSQL + pgvector) |
-| Embeddings | OpenAI `text-embedding-3-small` (1536 dims) |
-| Synthesis | OpenAI `gpt-4o` |
-| Reranking / HyDE | OpenAI `gpt-4o-mini` |
-| PDF parsing | pdfplumber, PyMuPDF |
+| Layer              | Technology                                  |
+| ------------------ | ------------------------------------------- |
+| Frontend           | Next.js 15, React, Tailwind CSS             |
+| Backend            | FastAPI (Python)                            |
+| Database + vectors | Supabase (PostgreSQL + pgvector)            |
+| Embeddings         | OpenAI `text-embedding-3-small` (1536 dims) |
+| Synthesis          | OpenAI `gpt-4o`                             |
+| Reranking / HyDE   | OpenAI `gpt-4o-mini`                        |
+| PDF parsing        | pdfplumber, PyMuPDF                         |
 
 ## Project structure
 
@@ -106,17 +113,16 @@ npm run dev
 
 The app runs at `http://localhost:3000`.
 
-
 ## API reference
 
-| Method | Path | Description |
-|---|---|---|
-| `POST` | `/api/auth/login` | Authenticate. Body: `{ "username": "...", "password": "..." }` |
-| `POST` | `/api/search` | Query documents. Body: `{ "query": "..." }` |
-| `GET` | `/api/documents` | List all uploaded documents |
-| `GET` | `/api/documents/{id}` | Get a single document by ID |
-| `POST` | `/api/documents` | Upload a PDF. Form fields: `file`, `document_type` |
-| `DELETE` | `/api/documents/{id}` | Delete a document and its chunks |
+| Method   | Path                  | Description                                                    |
+| -------- | --------------------- | -------------------------------------------------------------- |
+| `POST`   | `/api/auth/login`     | Authenticate. Body: `{ "username": "...", "password": "..." }` |
+| `POST`   | `/api/search`         | Query documents. Body: `{ "query": "..." }`                    |
+| `GET`    | `/api/documents`      | List all uploaded documents                                    |
+| `GET`    | `/api/documents/{id}` | Get a single document by ID                                    |
+| `POST`   | `/api/documents`      | Upload a PDF. Form fields: `file`, `document_type`             |
+| `DELETE` | `/api/documents/{id}` | Delete a document and its chunks                               |
 
 **Supported document types:** `RFP Document`, `Case Study`, `Pitch Deck`, `Client Presentation`
 
