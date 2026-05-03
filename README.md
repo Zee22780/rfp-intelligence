@@ -2,8 +2,9 @@
 
 A RAG-powered chat interface for querying your organisation's RFP documents, case studies, and pitch decks. Upload PDFs, ask questions in plain English, and get cited, synthesised answers grounded in your actual documents.
 
-https://github.com/user-attachments/assets/9371554d-ef59-4e76-867b-a0d51accddde
-
+<div align="center">
+  <video src="https://github.com/user-attachments/assets/9371554d-ef59-4e76-867b-a0d51accddde" width="100%" autoplay loop muted playsinline </video>
+</div>
 
 ## How it works
 
